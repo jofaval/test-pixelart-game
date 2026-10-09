@@ -19,6 +19,13 @@ npm test          # unit tests (Vitest)
 npm run build     # type-check + production build into dist/
 ```
 
+## Deployment
+
+The `Deploy to GitHub Pages` workflow builds and deploys the game whenever changes
+are pushed to `main` (or when started manually). In the repository settings, set
+**Pages → Build and deployment → Source** to **GitHub Actions**. The published site
+uses the repository path `/test-pixelart-game/`.
+
 Controls: **WASD / Arrow keys** to move, **E / Space / Enter** to interact,
 **J** for sketchbook, **Esc** to pause. Use **Tab / Enter** in menus. Approach a
 marked doorway and interact to travel. Keyboard required; touch controls are not
