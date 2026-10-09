@@ -128,6 +128,21 @@ describe('Borrowed Stone progression', () => {
       expect(interact(freeze(state), 'ilex').state).toEqual(state);
     }
   });
+
+  it('explains the flooded crossing and directions between the shrine and rain court', () => {
+    const ilex = interact(initialState(), 'ilex').panel.paragraphs.join(' ');
+    expect(ilex).toMatch(/waterways shifted, flooding the washed crossing/i);
+    expect(ilex).toMatch(/shrine in the washed crossing/i);
+
+    const shrine = interact(initialState(), 'shrine');
+    expect(shrine.panel.paragraphs.join(' ')).toMatch(/go west, then north to the rain court/i);
+    expect(interact(initialState(), 'counterweight').panel.paragraphs.join(' '))
+      .toMatch(/shrine in the washed crossing/i);
+    expect(interact(shrine.state, 'counterweight').panel.paragraphs.join(' '))
+      .toMatch(/passage east of the counterweight/i);
+    expect(objective(shrine.state).text).toMatch(/counterweight in the rain court/i);
+    expect(objective(readyState()).text).toMatch(/sluice in the rain court/i);
+  });
 });
 
 describe('optional discoveries and journal', () => {

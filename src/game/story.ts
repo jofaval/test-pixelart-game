@@ -93,7 +93,7 @@ function residentPanel(state: GameState, id: 'ilex' | 'mara' | 'tovan'): Panel {
       return {
         title: 'Ilex — Route steward',
         paragraphs: [
-          '“The dry channel has closed our crossing. Could you find a way to restore village water and the route? Start at the shrine beside the old sluice.”',
+          '“The waterways shifted, flooding the washed crossing while leaving our supply dry. Could you restore village water and the route? Start at the shrine in the washed crossing.”',
           '“Mara grows food below its outlet. Speak to people, read the stone, and come back when you have made your choice. We need a usable route, not a restored empire.”',
         ],
       };
@@ -188,6 +188,7 @@ export function interact(
         paragraphs: [
           'Fresh offerings rest in a reused sluice maintenance diagram. Someone has kept both the flowers and the old lettering clear.',
           'The diagram gives an order: seat the counterweight to open the service passage, then align the reflector to illuminate the sluice controls.',
+          'From the washed crossing, go west, then north to the rain court. Its counterweight and sluice belong to this diagram; the service passage entrance lies east of the counterweight.',
         ],
       };
       break;
@@ -195,7 +196,7 @@ export function interact(
       if (!next.notes.includes('shrine')) {
         panel = {
           title: 'Counterweight — An unfamiliar mechanism',
-          paragraphs: ['The stone could move, but its safe position is unclear. The nearby shrine may preserve instructions.'],
+          paragraphs: ['The stone could move, but its safe position is unclear. The shrine in the washed crossing may preserve instructions.'],
         };
         break;
       }
@@ -204,7 +205,7 @@ export function interact(
         title: 'Counterweight — Service passage open',
         paragraphs: [
           'Following the shrine’s maintenance diagram, the counterweight rests securely in its cradle. The service passage stands open.',
-          'Beyond it, the reflector can direct light onto the dark sluice controls.',
+          'Enter the passage east of the counterweight. Beyond it, the reflector can direct light onto the rain court’s dark sluice controls.',
         ],
       };
       break;
@@ -212,7 +213,7 @@ export function interact(
       if (!next.counterweight) {
         panel = {
           title: 'Reflector — Out of reach',
-          paragraphs: ['The closed service passage blocks the reflector. Seat the counterweight first; the shrine explains how.'],
+          paragraphs: ['The closed service passage blocks the reflector. Seat the counterweight in the rain court first; the shrine in the washed crossing explains how.'],
         };
         break;
       }
@@ -223,7 +224,7 @@ export function interact(
         paragraphs: [
           'The aligned light reveals deliberately cut Dominion fastenings. These reservoirs did not simply fail: someone dismantled their connections.',
           'Cutting the network freed rain from Dominion control, but cut dependent districts off from their supply. Freedom and loss share these toolmarks.',
-          'The sluice controls are now readable. A side inscription also marks a Concord bypass worth examining before releasing water.',
+          'The sluice controls in the rain court are now readable. A side inscription also marks a Concord bypass worth examining before releasing water.',
         ],
       };
       break;
@@ -255,7 +256,7 @@ export function interact(
             ? 'The repair can help maintain the supply, but it cannot restore the beds already lost to the flood.'
             : next.resolution === 'preserve'
               ? 'The bypass now keeps the village supplied and the route open, with Mara’s garden intact.'
-              : 'At the sluice, you can now preserve the garden while restoring both village water and the route.',
+              : 'At the sluice in the rain court, you can now preserve the garden while restoring both village water and the route.',
         ],
       };
       break;
@@ -301,10 +302,10 @@ export function interact(
 export function objective(state: GameState): { text: string; target: InteractionId } {
   if (state.completed) return { text: 'Complete — water and the route restored. Explore freely or visit Ilex.', target: 'ilex' };
   if (state.resolution !== null) return { text: 'Return to Ilex and report how you restored the water and route.', target: 'ilex' };
-  if (!state.notes.includes('shrine')) return { text: 'Read the maintenance diagram reused by the shrine.', target: 'shrine' };
-  if (!state.counterweight) return { text: 'Seat the counterweight to open the service passage.', target: 'counterweight' };
-  if (!state.reflector) return { text: 'Align the reflector to illuminate the sluice controls.', target: 'reflector' };
-  return { text: 'Choose at the sluice. A Concord bypass may spare Mara’s garden.', target: 'sluice' };
+  if (!state.notes.includes('shrine')) return { text: 'Read the maintenance diagram at the shrine in the washed crossing.', target: 'shrine' };
+  if (!state.counterweight) return { text: 'Seat the counterweight in the rain court to open the service passage.', target: 'counterweight' };
+  if (!state.reflector) return { text: 'Enter the passage east of the counterweight and align the reflector.', target: 'reflector' };
+  return { text: 'Choose at the sluice in the rain court. A Concord bypass may spare Mara’s garden.', target: 'sluice' };
 }
 
 export function journalEntries(state: GameState): JournalEntry[] {

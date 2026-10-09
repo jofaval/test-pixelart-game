@@ -1,7 +1,8 @@
 # Design documents
 
-This folder holds the design side of the project. The templates are intentionally
-empty: they are filled in during the proposal / stakeholder Q&A phase.
+This folder records Borrowed Stone's proposal, implemented browser slice, visual
+direction, and author-facing lore. Stakeholder questions remain in the proposal;
+further production is not implied by the slice.
 
 | File | Purpose |
 | --- | --- |

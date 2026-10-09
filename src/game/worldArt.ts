@@ -160,13 +160,28 @@ export function surroundings(r: Renderer, region: Region, state: GameState, cx: 
     r.rect(x + 26, y + 12, 8, 15, P.chalk);
     r.rect(x + 29, y + 12, 2, 6, P.teal);
     const lineX = 10 * T - cx;
-    const lineY = 6 * T - cy;
+    const lineY = 9 * T - cy;
     r.rect(lineX, lineY, 11 * T, 1, P.earth);
     for (let i = 0; i < 6; i++) {
       const dy = Math.floor(Math.sin(time * 2 + i) * 2);
       r.rect(lineX + 12 + i * 25, lineY + 1, 13, 15 + dy, i % 2 ? P.cloth : P.bone);
       r.rect(lineX + 16 + i * 25, lineY + 3, 1, 10, P.stoneLight);
     }
+    for (const [col, row] of [[10, 12], [11, 12], [22, 12], [25, 16], [11, 19]]) {
+      const px = col * T - cx;
+      const py = row * T - cy;
+      r.rect(px, py + 8, 10, 4, P.shadow);
+      r.rect(px + 1, py + 2, 8, 9, P.ember);
+      r.rect(px + 2, py, 6, 3, P.cloth);
+      r.rect(px + 3, py + 1, 4, 1, P.ink);
+      r.rect(px + 2, py + 4, 1, 4, P.bone);
+    }
+    const markerX = 20 * T - cx;
+    const markerY = 17 * T - cy;
+    r.rect(markerX, markerY - 5, 9, 21, P.stoneLight);
+    r.rect(markerX + 2, markerY - 2, 4, 2, P.teal);
+    r.rect(markerX + 2, markerY + 3, 5, 1, P.ink);
+    r.rect(markerX + 1, markerY + 12, 9, 4, P.moss);
   }
   if (region === 'crossing') {
     const x = 12 * T - cx;

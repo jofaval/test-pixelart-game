@@ -3,6 +3,7 @@ export class Soundscape {
   private context: AudioContext | null = null;
   private timer: number | null = null;
   private phrase = 0;
+  private water: AudioBufferSourceNode | null = null;
 
   setEnabled(enabled: boolean): void {
     if (!enabled) {
@@ -13,6 +14,21 @@ export class Soundscape {
     }
     try {
       this.context ??= new AudioContext();
+      if (!this.water) {
+        const buffer = this.context.createBuffer(1, this.context.sampleRate * 3, this.context.sampleRate);
+        const samples = buffer.getChannelData(0);
+        for (let i = 0; i < samples.length; i++) samples[i] = Math.random() * 2 - 1;
+        this.water = this.context.createBufferSource();
+        this.water.buffer = buffer;
+        this.water.loop = true;
+        const filter = this.context.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.value = 620;
+        const gain = this.context.createGain();
+        gain.gain.value = 0.025;
+        this.water.connect(filter).connect(gain).connect(this.context.destination);
+        this.water.start();
+      }
       void this.context.resume().catch(() => {});
       if (this.timer === null) {
         this.chime();

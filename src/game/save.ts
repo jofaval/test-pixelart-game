@@ -28,7 +28,7 @@ export function newSave(settings: Settings = DEFAULT_SETTINGS): Save {
     version: 1,
     state: initialState(),
     region: 'settlement',
-    player: playerAt(13, 15),
+    player: playerAt(13, 10),
     settings: { ...settings },
   };
 }

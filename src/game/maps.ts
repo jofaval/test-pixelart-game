@@ -81,15 +81,15 @@ export const WORLDS: Record<Region, World> = {
     landmarks: [
       { id: 'ilex', label: 'Ilex · route steward', x: 15, y: 12 },
       { id: 'mara', label: 'Mara · gardener', x: 23, y: 15 },
-      { id: 'tovan', label: 'Tovan · ceramic mender', x: 9, y: 10 },
+      { id: 'tovan', label: 'Tovan · ceramic mender', x: 9, y: 12 },
     ],
     doors: [
       { label: 'The washed crossing', x: 29, y: 14, to: 'crossing', arrival: { x: 3, y: 14 } },
       { label: 'Reservoir courtyard', x: 15, y: 2, to: 'courtyard', arrival: { x: 15, y: 19 } },
     ],
     buildings: [
-      { x: 4, y: 5, w: 6, h: 3, kind: 'home' },
-      { x: 21, y: 5, w: 6, h: 3, kind: 'home' },
+      { x: 4, y: 8, w: 6, h: 3, kind: 'home' },
+      { x: 21, y: 8, w: 6, h: 3, kind: 'home' },
       { x: 5, y: 17, w: 5, h: 3, kind: 'kiln' },
     ],
   },

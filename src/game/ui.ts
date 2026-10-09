@@ -67,7 +67,7 @@ export class GameUI {
       actions.append(button);
     }
     this.dialog.append(actions);
-    actions.querySelector('button')?.focus();
+    (actions.querySelector<HTMLButtonElement>('button:not(.danger)') ?? actions.querySelector('button'))?.focus();
   }
 
   private close(): void {
@@ -97,7 +97,8 @@ export class GameUI {
   }
 
   panel(panel: Panel): void {
-    this.page(panel.title, 'FIELD CONVERSATION / OBSERVATION');
+    const ending = this.commands.save().state.completed && panel.title === 'Ilex — Borrowed Stone';
+    this.page(panel.title, ending ? 'COMMISSION COMPLETE / REEDBANK' : 'FIELD CONVERSATION / OBSERVATION');
     for (const paragraph of panel.paragraphs) this.dialog.append(element('p', paragraph));
     const choices = panel.choices?.map((choice) => ({
       label: choice.label,
