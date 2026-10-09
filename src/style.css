@@ -1,19 +1,86 @@
-html,
-body {
-  margin: 0;
-  height: 100%;
-  background: #000;
-  overflow: hidden;
+:root {
+  color-scheme: dark;
+  font-family: system-ui, sans-serif;
+  background: var(--ink);
+  color: var(--bone);
+  font-synthesis: none;
 }
-
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+* { box-sizing: border-box; }
+body { margin: 0; height: 100dvh; overflow: hidden; }
+button, input { font: inherit; }
+button {
+  color: var(--bone);
+  background: var(--shadow);
+  border: 1px solid var(--stone);
+  border-radius: 2px;
+  padding: 10px 16px;
+  cursor: pointer;
 }
-
-#game {
-  display: block;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
+button:hover { border-color: var(--saffron); color: var(--saffron); }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--saffron); outline-offset: 4px; }
+button.primary { background: var(--saffron); border-color: var(--saffron); color: var(--ink); font-weight: 650; }
+button.danger { border-color: var(--ember); }
+button:disabled { opacity: .45; cursor: not-allowed; }
+kbd { font-size: 10px; margin-left: 9px; color: var(--stoneLight); }
+.masthead {
+  position: absolute; inset: 0 0 auto; height: 80px;
+  padding: 0 32px; display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--shadow);
+}
+.wordmark { font-family: Georgia, serif; letter-spacing: 3px; font-size: 17px; }
+.wordmark small { display: block; font: 9px system-ui, sans-serif; letter-spacing: 3px; margin: 7px 0 0 29px; color: var(--stoneLight); }
+.seal { color: var(--saffron); font-size: 25px; vertical-align: middle; }
+nav { display: flex; gap: 8px; }
+nav button { background: transparent; font-size: 12px; }
+#stage { position: absolute; inset: 90px 16px 89px; display: flex; align-items: center; justify-content: center; overflow: auto; }
+#game { display: block; flex: none; image-rendering: pixelated; image-rendering: crisp-edges; outline: none; box-shadow: 0 0 0 1px var(--stone); }
+.field-notes {
+  position: absolute; inset: auto 0 0; min-height: 78px; padding: 12px 32px;
+  border-top: 1px solid var(--shadow); display: flex; justify-content: space-between; gap: 20px;
+}
+.eyebrow { color: var(--saffron); font-size: 10px; letter-spacing: 2.4px; font-weight: 600; }
+.field-notes p { margin: 6px 0; font-size: 13px; }
+.field-right { text-align: right; }
+.field-right small { font-size: 10px; color: var(--stoneLight); }
+dialog {
+  color: var(--bone); background: var(--ink); border: 1px solid var(--stone);
+  padding: 32px 38px; width: min(620px, calc(100vw - 24px));
+  max-height: calc(100dvh - 32px); box-shadow: 8px 8px 0 var(--shadow);
+  overflow: auto;
+}
+dialog::backdrop { background: rgb(11 10 18 / 78%); }
+dialog h1 { font-family: Georgia, serif; font-size: 35px; font-weight: 400; line-height: 1.08; margin: 16px 0 20px; }
+dialog.intro h1 { font-size: clamp(44px, 8vw, 72px); letter-spacing: 3px; max-width: 420px; }
+dialog h2 { font-family: Georgia, serif; font-size: 22px; font-weight: normal; color: var(--chalk); }
+dialog p { font-size: 15px; line-height: 1.75; margin: 14px 0; }
+dialog .lede { font: italic 19px/1.5 Georgia, serif; color: var(--saffron); }
+.actions { margin-top: 25px; display: flex; gap: 10px; flex-wrap: wrap; }
+.actions button { flex-grow: 1; }
+.controls { color: var(--stoneLight); font-size: 12px; line-height: 1.8; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--shadow); }
+.note { border-top: 1px solid var(--stone); padding: 10px 0; }
+.note p { font-size: 14px; }
+.note strong { color: var(--saffron); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
+.setting { display: flex; gap: 14px; align-items: center; margin: 20px 0; font-size: 15px; cursor: pointer; }
+.setting input { accent-color: var(--saffron); width: 19px; height: 19px; }
+.large-text dialog { width: min(740px, calc(100vw - 24px)); }
+.large-text dialog p, .large-text .setting { font-size: 19px; }
+.large-text .field-notes p { font-size: 16px; }
+.large-text button { font-size: 17px; }
+@media (max-width: 650px) {
+  .masthead { height: 65px; padding: 0 12px; }
+  .wordmark { font-size: 12px; letter-spacing: 1px; }
+  .wordmark small { font-size: 7px; letter-spacing: 1px; margin-left: 0; }
+  .seal, kbd { display: none; }
+  nav button { padding: 8px; }
+  #stage { inset: 75px 0 105px; justify-content: safe center; }
+  .field-notes { padding: 10px 12px; min-height: 95px; gap: 6px; }
+  .field-notes p { font-size: 11px; }
+  .field-notes > div { max-width: 60%; }
+  dialog { padding: 24px; }
+}
+@media (max-height: 520px) {
+  .masthead { height: 45px; }
+  .wordmark small { display: none; }
+  #stage { inset: 52px 0 60px; }
+  .field-notes { min-height: 55px; padding-top: 5px; padding-bottom: 5px; }
 }

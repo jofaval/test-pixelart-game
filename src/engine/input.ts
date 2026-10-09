@@ -1,4 +1,4 @@
-export type Action = 'up' | 'down' | 'left' | 'right' | 'interact' | 'menu';
+export type Action = 'up' | 'down' | 'left' | 'right' | 'interact' | 'menu' | 'journal';
 
 /** Default keyboard bindings (KeyboardEvent.code -> action). */
 export const DEFAULT_BINDINGS: Readonly<Record<string, Action>> = {
@@ -14,6 +14,7 @@ export const DEFAULT_BINDINGS: Readonly<Record<string, Action>> = {
   Space: 'interact',
   Enter: 'interact',
   Escape: 'menu',
+  KeyJ: 'journal',
 };
 
 /**
@@ -32,10 +33,12 @@ export class Input {
 
   attach(target: Window): void {
     target.addEventListener('keydown', (e) => {
+      if (e.target instanceof HTMLElement &&
+          e.target.closest('button, input, select, textarea, [contenteditable="true"]')) return;
       if (this.keyDown(e.code)) e.preventDefault();
     });
     target.addEventListener('keyup', (e) => this.keyUp(e.code));
-    target.addEventListener('blur', () => this.held.clear());
+    target.addEventListener('blur', () => this.clear());
   }
 
   /** Returns true if the key is bound to an action. */
@@ -63,6 +66,11 @@ export class Input {
 
   /** Call once per simulation step, after the scene update. */
   endFrame(): void {
+    this.pressed.clear();
+  }
+
+  clear(): void {
+    this.held.clear();
     this.pressed.clear();
   }
 

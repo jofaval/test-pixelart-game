@@ -2,12 +2,28 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pixel Art Game</title>
+    <meta name="theme-color" content="#171623" />
+    <meta name="description" content="Borrowed Stone — a playable pixel-art exploration story about old ruins and new lives." />
+    <title>Borrowed Stone — A route-reader's tale</title>
   </head>
   <body>
-    <canvas id="game" aria-label="Game screen"></canvas>
+    <header class="masthead">
+      <div class="wordmark"><span class="seal" aria-hidden="true">◇</span> BORROWED STONE <small>A ROUTE-READER'S TALE</small></div>
+      <nav aria-label="Game tools">
+        <button id="journal-button" type="button">Sketchbook <kbd>J</kbd></button>
+        <button id="menu-button" type="button">Pause <kbd>Esc</kbd></button>
+      </nav>
+    </header>
+    <main id="stage">
+      <canvas id="game" tabindex="0" aria-label="Borrowed Stone exploration world. Move with WASD or arrows. E to interact, J for sketchbook, Escape to pause." aria-describedby="objective prompt"></canvas>
+    </main>
+    <footer class="field-notes">
+      <div><span class="eyebrow">YOUR COMMISSION</span><p id="objective"></p></div>
+      <div class="field-right"><p id="prompt" role="status">WASD / Arrows · walk</p><small id="save-status" role="status"></small></div>
+    </footer>
+    <dialog id="overlay" aria-labelledby="panel-title"></dialog>
+    <noscript>This exploration game requires JavaScript.</noscript>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
