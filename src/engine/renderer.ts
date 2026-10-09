@@ -25,7 +25,9 @@ export class Renderer {
   }
 
   resize(): void {
-    const scale = integerScale(window.innerWidth, window.innerHeight, VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
+    const bounds = this.canvas.parentElement;
+    const scale = integerScale(bounds?.clientWidth ?? window.innerWidth,
+      bounds?.clientHeight ?? window.innerHeight, VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
     this.canvas.style.width = `${VIRTUAL_WIDTH * scale}px`;
     this.canvas.style.height = `${VIRTUAL_HEIGHT * scale}px`;
   }

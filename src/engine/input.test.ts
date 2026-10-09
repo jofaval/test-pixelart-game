@@ -28,4 +28,16 @@ describe('Input', () => {
     expect(x).toBeGreaterThan(0);
     expect(y).toBeGreaterThan(0);
   });
+
+  it('binds the sketchbook and clears both held and queued input on pause', () => {
+    const input = new Input();
+    input.keyDown('KeyJ');
+    input.keyDown('KeyW');
+    expect(input.wasPressed('journal')).toBe(true);
+    input.clear();
+    expect(input.wasPressed('journal')).toBe(false);
+    expect(input.isDown('up')).toBe(false);
+    input.keyDown('KeyW');
+    expect(input.wasPressed('up')).toBe(true);
+  });
 });

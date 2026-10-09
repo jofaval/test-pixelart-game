@@ -1,14 +1,20 @@
-/**
- * Placeholder limited palette. Replace once the art direction is decided —
- * all game colours should come from here to keep the look consistent.
- */
+/** Weathered enamel, chalk limestone, and the living settlement's cloth. */
 export const PALETTE = {
   void: '#0b0a12',
-  shadow: '#1d1b2a',
-  stone: '#3b3a4f',
-  stoneLight: '#5d5b73',
-  moss: '#2f4a3a',
-  ember: '#c8763a',
-  bone: '#d9cfb4',
-  ink: '#14121c',
+  shadow: '#292435',
+  stone: '#696373',
+  stoneLight: '#a39a9a',
+  moss: '#526653',
+  ember: '#bb6551',
+  bone: '#e6d9b5',
+  ink: '#171623',
+  chalk: '#c9c4b0',
+  teal: '#467c7c',
+  water: '#274b60',
+  ripple: '#77a5a0',
+  saffron: '#e6b85f',
+  earth: '#675049',
+  grass: '#394b43',
+  leaf: '#92a276',
+  cloth: '#d58468',
 } as const;

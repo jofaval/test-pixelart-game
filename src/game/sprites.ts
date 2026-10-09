@@ -8,20 +8,22 @@ const SPRITE_PALETTE: Palette = {
   s: PALETTE.stone,
   l: PALETTE.stoneLight,
   m: PALETTE.moss,
+  t: PALETTE.teal,
+  a: PALETTE.saffron,
 };
 
-/** 10x14 placeholder wanderer. */
+/** Chalk mask, saffron travel scarf, and a weathered teal coat. */
 export const PLAYER_ROWS = [
   '...kkkk...',
   '..kbbbbk..',
   '..kbkbkk..',
   '..kbbbbk..',
   '...kkkk...',
-  '..ksssskk.',
-  '.kssssssk.',
-  '.kslsslsk.',
-  '.kssssssk.',
-  '..ksssskk.',
+  '..kaaaakk.',
+  '.kttatttk.',
+  '.ktattltk.',
+  '.kttttttk.',
+  '..kttttkk.',
   '..kskkskk.',
   '..ks..sk..',
   '..kk..kk..',
